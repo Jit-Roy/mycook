@@ -1,6 +1,9 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/route';
-import { connectToDatabase } from '@/lib/mongodb';
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export async function GET(req) {
   const session = await getServerSession(authOptions);
@@ -15,10 +18,9 @@ export async function GET(req) {
     return new Response(JSON.stringify({ error: 'Email is required' }), { status: 400 });
   }
 
-  const { db } = await connectToDatabase();
-  const conversations = await db.collection('conversations').findOne({ email: email });
+  const conversations = await convex.query(api.conversations.getConversationsByEmail, { email });
 
-  return new Response(JSON.stringify({ conversations: conversations?.data || [] }), { status: 200 });
+  return new Response(JSON.stringify({ conversations: conversations || [] }), { status: 200 });
 }
 
 export async function POST(req) {
@@ -33,13 +35,7 @@ export async function POST(req) {
     return new Response(JSON.stringify({ error: 'Email is required' }), { status: 400 });
   }
 
-  const { db } = await connectToDatabase();
-
-  await db.collection('conversations').updateOne(
-    { email: email },
-    { $set: { data: conversations } },
-    { upsert: true }
-  );
+  await convex.mutation(api.conversations.updateConversations, { email, conversations });
 
   return new Response(JSON.stringify({ success: true }), { status: 200 });
 }

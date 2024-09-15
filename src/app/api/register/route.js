@@ -1,16 +1,18 @@
-import { connectToDatabase } from '@/lib/mongodb';
 import bcrypt from 'bcryptjs';
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 export async function POST(req) {
   try {
-    const { client, db } = await connectToDatabase();
     const { fullName, email, password } = await req.json();
 
     console.log('Attempting to register user:', email);
     console.log('Received password length:', password.length);
 
     // Check if user already exists
-    const existingUser = await db.collection('users').findOne({ email });
+    const existingUser = await convex.query(api.users.getUserByEmail, { email });
     if (existingUser) {
       console.log('User already exists:', email);
       return new Response(JSON.stringify({ message: 'User already exists' }), {
@@ -25,7 +27,7 @@ export async function POST(req) {
     console.log('Hashed password length:', hashedPassword.length);
 
     // Create new user
-    const result = await db.collection('users').insertOne({
+    const result = await convex.mutation(api.users.createUser, {
       fullName,
       email,
       password: hashedPassword,  // Store the hashed password
@@ -33,7 +35,7 @@ export async function POST(req) {
 
     console.log('User registered successfully:', email);
 
-    return new Response(JSON.stringify({ message: 'User registered successfully', userId: result.insertedId }), {
+    return new Response(JSON.stringify({ message: 'User registered successfully', userId: result }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });

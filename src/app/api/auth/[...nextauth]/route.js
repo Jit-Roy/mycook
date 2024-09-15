@@ -1,8 +1,10 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectToDatabase } from '@/lib/mongodb';
 import bcrypt from 'bcryptjs';
-import { MongoClient } from 'mongodb';
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
 const authOptions = {
   providers: [
@@ -17,13 +19,10 @@ const authOptions = {
           console.log('Attempting to authorize with email:', credentials.email);
           console.log('Received password length:', credentials.password.length);
 
-          const client = await MongoClient.connect(process.env.MONGODB_URI);
-          const db = client.db();
-          const user = await db.collection('users').findOne({ email: credentials.email });
+          const user = await convex.query(api.users.getUserByEmail, { email: credentials.email });
 
           if (!user) {
             console.log('User not found in database');
-            await client.close();
             return null;
           }
 
@@ -36,11 +35,9 @@ const authOptions = {
 
           if (isValid) {
             console.log('Password is valid, authentication successful');
-            await client.close();
-            return { id: user._id.toString(), name: user.fullName, email: user.email };
+            return { id: user._id, name: user.fullName, email: user.email };
           } else {
             console.log('Password is invalid');
-            await client.close();
             return null;
           }
         } catch (error) {
