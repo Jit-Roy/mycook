@@ -1,0 +1,56 @@
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #00cec9;
+  --text-color: #ffffff;
+  --bg-start: #2d1f4f;
+  --bg-end: #00cec9;
+  --cta-color: #7c3aed;
+  --cta-hover-color: #6d28d9;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.auth-page h1 {
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}

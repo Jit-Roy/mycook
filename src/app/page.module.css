@@ -1,0 +1,167 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header {
+  width: 100%;
+  padding: 1rem 5%;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.header li {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.header a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header a:hover {
+  color: var(--secondary-color);
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btnPrimary {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.btnSecondary {
+  background-color: transparent;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+}
+
+.btnCta {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  background-color: var(--cta-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.btnCta:hover {
+  background-color: var(--cta-hover-color);
+}
+
+.hero, .features, .testimonials, .auth {
+  text-align: center;
+  padding: 4rem 10%;
+  width: 100%;
+}
+
+.hero {
+  padding-top: 8rem; /* Add extra padding to account for fixed header */
+}
+
+.hero h1, .features h2, .testimonials h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p, .features p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.trustIndicator {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.features ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.features li {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.features li:hover {
+  transform: translateY(-5px);
+}
+
+.auth {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.authForms {
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.signIn, .register {
+  width: 45%;
+}
+
+.auth h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .authForms {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signIn, .register {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+  }
+}

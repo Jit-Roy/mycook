@@ -1,0 +1,360 @@
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pageContainer {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  transition: padding-left 0.3s ease-in-out;
+}
+
+.containerSidebarOpen {
+  padding-left: 250px;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarTitle {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.sidebarClosed {
+  transform: translateX(-250px);
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+}
+
+.toggleButton {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: left 0.3s ease-in-out;
+}
+
+.toggleButtonOpen {
+  left: 260px;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+  max-width: 1200px; /* Add this line */
+  margin: 0 auto; /* Center the content */
+  padding: 0 20px; /* Add some padding on the sides */
+}
+
+.chatHistory {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.historyItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.historyItem {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.historyItem:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.chatContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px; /* Add this line */
+  margin: 0 auto; /* Center the chat container */
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.user {
+  background-color: rgba(0, 0, 0, 0.3);
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.assistant {
+  background-color: #f0f0f0;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.message p {
+  margin: 0 0 10px 0;
+}
+
+.message ul {
+  margin: 0 0 10px 0;
+  padding-left: 20px;
+}
+
+.error {
+  align-self: center;
+  background-color: rgba(255, 0, 0, 0.6);
+  color: white;
+}
+
+.messageContent {
+  word-break: break-word;
+}
+
+.message.assistant:last-child {
+  animation: pulse 1.5s infinite;
+}
+
+.inputForm {
+  display: flex;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: transparent; 
+}
+
+.input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; 
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.7); 
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.newChatButton {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newChatButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.activeConversation {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+.deleteButton:hover {
+  color: #ff4d4d;
+}
+
+.message.assistant {
+  background-color: rgba(60, 60, 60, 0.4);;
+  align-self: flex-start;
+}
+
+.messageContent {
+  word-break: break-word;
+}
+
+/* Add this new style for the loading indicator */
+.message.assistant:last-child {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Add a media query for smaller screens */
+@media (max-width: 768px) {
+  .message {
+    max-width: 85%; /* Slightly wider on small screens */
+  }
+  
+  .mainContent,
+  .chatContainer,
+  .inputForm {
+    padding: 10px;
+  }
+  
+  .input {
+    font-size: 14px;
+  }
+  
+  .button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Add these new styles at the end of your Dashboard.module.css file */
+
+.cartContainer {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: black;
+  z-index: 1002;
+  cursor: move;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.cartHeader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cartIcon {
+  font-size: 24px; /* Adjust size as needed */
+}
+
+.cartVisible {
+  width: 300px; /* Expand width when visible */
+  height: auto;
+  max-height: 80vh;
+  border-radius: 10px; /* Revert to rounded rectangle when expanded */
+}
+
+.cartContent {
+  padding: 10px;
+}
+
+.cartContent h2 {
+  margin-top: 0;
+}
+
+.cartItems {
+  max-height: calc(80vh - 100px); /* Adjust based on your header height */
+  overflow-y: auto;
+}
+
+.cartItem {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+/* Responsive design for cart */
+@media (max-width: 768px) {
+  .cartContainer {
+    width: 100%;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.addToCartButton {
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  color: white; /* White text for contrast */
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Slightly more opaque border */
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addToCartButton:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+}

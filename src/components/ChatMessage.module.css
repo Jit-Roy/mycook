@@ -1,0 +1,83 @@
+.message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-break: break-word;
+  position: relative; /* Add this to position the button absolutely within the message */
+}
+
+.user {
+  background-color: rgba(0, 0, 0, 0.3);
+  align-self: flex-end;
+  margin-left: auto;
+  color: white;
+}
+
+.assistant {
+  background-color: rgba(60, 60, 60, 0.4);
+  align-self: flex-start;
+  margin-right: auto;
+  color: white;
+}
+
+.message p {
+  margin: 0 0 10px 0;
+}
+
+.message ul {
+  margin: 0 0 10px 0;
+  padding-left: 20px;
+}
+
+.messageContent {
+  word-break: break-word;
+}
+
+.message strong {
+  font-weight: bold;
+}
+
+.message em {
+  font-style: italic;
+}
+
+.message.assistant:last-child {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Add a media query for smaller screens */
+@media (max-width: 768px) {
+  .message {
+    max-width: 85%; /* Slightly wider on small screens */
+  }
+}
+
+.addToCartButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addToCartButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}

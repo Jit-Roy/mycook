@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: black; /* Add this line to make text black */
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.inputGroup {
+    margin-bottom: 1rem;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: #0070f3;
+    color: black; /* Change this to black */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0051a2;
+}
+
+.signInLink {
+    margin-top: 1rem;
+    color: black; /* Change this to black for the main text */
+}
+
+.signInLink a {
+    color: blue; /* Add this to make only the link blue */
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    color: black; /* Add this line to make text black */
+}
+
+.backLink {
+    color: blue; /* Change this to blue */
+    text-decoration: none;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
